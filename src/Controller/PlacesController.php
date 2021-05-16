@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Place;
 use App\Repository\PlaceRepository;
@@ -11,7 +12,7 @@ use App\Repository\PlaceRepository;
 class PlacesController extends AbstractController
 {
     /**
-     * @Route("/places", name="places")
+     * @Route("/api/places", name="places")
      */
     public function index(PlaceRepository $repos): Response
     {
@@ -19,22 +20,22 @@ class PlacesController extends AbstractController
     }
 
     /**
-     * @Route("/places/create", name="places_create")
+     * @Route("/api/places/create", name="places_create")
      */
     public function create(Request $req, ObjectManager $manager): Response
     {
         $place = new Place();
 
-        $form = this->CreateFormBuilder($article)
+        $form = $this->createFormBuilder($article)
             -add('nom')
             ->add('address')
             ->add('coordinate')
             ->getForm();
-        return
+        return null;
     }
 
     /**
-     * @Route("/places/{name}", name="places_show")
+     * @Route("/api/places/{name}", name="places_show")
      */
     public function show(PlaceRepository $repos, $name): Response
     {
